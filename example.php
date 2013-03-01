@@ -7,12 +7,12 @@
           3)  That the global var $db is an instantiated MySQL PDO connection object (see bottom)
   */ ##########################################################################################
   
-  require_once('lib/base_model.php'); // Require the base_model class
+  require_once('vendor/autoload.php'); // Require the base_model class
   
   #############################################
   #####   Define the 'User' model
   #############################################
-  class User extends base_model { 
+  class User extends php_crud_model_class\basemodel { 
     
     public function isAdmin() { 
       if($this->admin == 1) { 
@@ -29,22 +29,24 @@
       }
     }
   }
+
+  var_dump(class_exists('User'));
   
-  ### DB Connection
-  $db = new PDO('mysql:host='.$YOUR_DB_HOSTNAME.';dbname='.$YOUR_DB_NAME , $YOUR_DB_USERNAME, $YOUR_DB_PASSWORD);
+  // ### DB Connection
+  // $db = new PDO('mysql:host='.$YOUR_DB_HOSTNAME.';dbname='.$YOUR_DB_NAME , $YOUR_DB_USERNAME, $YOUR_DB_PASSWORD);
   
-  #############################################
-  #####   Try it out - Create a new User!
-  #############################################
-  $new_user = new User();
-  $new_user->username = 'Zach Morris';
-  $new_user->admin = 0;
-  $new_user->save();  
+  // #############################################
+  // #####   Try it out - Create a new User!
+  // #############################################
+  // $new_user = new User();
+  // $new_user->username = 'Zach Morris';
+  // $new_user->admin = 0;
+  // $new_user->save();  
   
-  #############################################
-  #####   Try it out - Edit an existing User
-  #############################################
-  $last_user = User::last();
-  $last_user->admin = 1; // Make him an admin!
-  $last_user->save();    
-    
+  // #############################################
+  // #####   Try it out - Edit an existing User
+  // #############################################
+  // $last_user = User::last();
+  // $last_user->admin = 1; // Make him an admin!
+  // $last_user->save();    
+  //   
