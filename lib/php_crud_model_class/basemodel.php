@@ -1,6 +1,8 @@
 <?php
 
-  class base_model { 
+namespace php_crud_model_class;
+
+  class basemodel { 
     public $last_error_message;
     protected $db;
     protected $properties = array();
