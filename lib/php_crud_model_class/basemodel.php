@@ -5,6 +5,7 @@ namespace php_crud_model_class;
   class basemodel { 
     public $last_error_message;
     protected $db;
+    protected $identifyerKey = 'id';
     protected $properties = array();
     
     # Returns the string table name based on the [very basic] pluralized ModelName
@@ -41,7 +42,7 @@ namespace php_crud_model_class;
     
     public static function find($id) { 
       global $db;
-      $sql = "SELECT * FROM ".self::table_name()." WHERE id = ?";
+      $sql = "SELECT * FROM ".self::table_name()." WHERE ".$this->identifyerKey." = ?";
       $q = $db->prepare($sql);
       $q->execute(array($id));
       $q->setFetchMode(PDO::FETCH_CLASS , get_called_class());
